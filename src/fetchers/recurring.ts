@@ -60,7 +60,8 @@ export async function getUpcomingBills(
     const stream = item.stream || {};
     return {
       id: item.id ?? stream.id ?? "",
-      merchantName: stream.merchant?.name ?? stream.name ?? item.name ?? "Unknown",
+      merchantName:
+        stream.merchant?.name ?? stream.name ?? item.name ?? "Unknown",
       amount: item.amount ?? stream.amount ?? 0,
       date: item.date ?? item.expectedDate ?? fmt(today),
       categoryName:

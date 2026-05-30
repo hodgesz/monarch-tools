@@ -21,7 +21,11 @@ export async function buildWeeklySummary(
   const monthStart = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-01`;
 
   // Same period last month
-  const lastMonthNow = new Date(now.getFullYear(), now.getMonth() - 1, now.getDate());
+  const lastMonthNow = new Date(
+    now.getFullYear(),
+    now.getMonth() - 1,
+    now.getDate()
+  );
   const lastMonthStart = `${lastMonthNow.getFullYear()}-${String(lastMonthNow.getMonth() + 1).padStart(2, "0")}-01`;
   const lastMonthSameDay = lastMonthNow.toISOString().split("T")[0];
 
@@ -57,7 +61,9 @@ export async function buildWeeklySummary(
     .filter((t) => t.amount < 0)
     .reduce((s, t) => s + t.amount, 0);
   const pctChange =
-    lastSpent !== 0 ? ((currentSpent - lastSpent) / Math.abs(lastSpent)) * 100 : 0;
+    lastSpent !== 0
+      ? ((currentSpent - lastSpent) / Math.abs(lastSpent)) * 100
+      : 0;
 
   const weekSpent = weekTxns
     .filter((t) => t.amount < 0)
@@ -118,8 +124,7 @@ function buildWarehouseInsights(): WarehouseInsights | undefined {
     }));
 
     const subs = subscriptionCandidates();
-    const monthsObserved =
-      new Set(income.map((r) => r.month)).size || 1;
+    const monthsObserved = new Set(income.map((r) => r.month)).size || 1;
     const subscriptionMonthlyTotal =
       subs.reduce((sum, s) => sum + s.total_spent, 0) / monthsObserved;
 

@@ -95,7 +95,9 @@ export function dailyDigestEmail(data: DailyDigestData): string {
   </div>
 </div>
 
-${data.yesterdayTransactions.length > 0 ? `
+${
+  data.yesterdayTransactions.length > 0
+    ? `
 <h3 style="margin: 0 0 8px 0;">Yesterday's Transactions</h3>
 <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
   <tr style="background: #f8f9fa;">
@@ -104,9 +106,13 @@ ${data.yesterdayTransactions.length > 0 ? `
     <th style="padding: 8px 12px; text-align: left;">Category</th>
   </tr>
   ${txnRows}
-</table>` : "<p style=\"color: #666;\">No transactions yesterday.</p>"}
+</table>`
+    : '<p style="color: #666;">No transactions yesterday.</p>'
+}
 
-${data.budgetHighlights.length > 0 ? `
+${
+  data.budgetHighlights.length > 0
+    ? `
 <h3 style="margin: 20px 0 8px 0;">Budget Highlights</h3>
 <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
   <tr style="background: #f8f9fa;">
@@ -115,7 +121,9 @@ ${data.budgetHighlights.length > 0 ? `
     <th style="padding: 8px 12px; text-align: right;">Used</th>
   </tr>
   ${budgetRows}
-</table>` : ""}`;
+</table>`
+    : ""
+}`;
 }
 
 // --- Weekly Summary ---
@@ -265,7 +273,10 @@ function renderWarehouseSection(w: WarehouseInsights): string {
   const momRows = w.momTopMovers
     .map((r) => {
       const color = r.deltaAbs > 0 ? "#dc3545" : "#198754";
-      const pct = r.deltaPct === null ? "—" : `${r.deltaPct > 0 ? "+" : ""}${r.deltaPct}%`;
+      const pct =
+        r.deltaPct === null
+          ? "—"
+          : `${r.deltaPct > 0 ? "+" : ""}${r.deltaPct}%`;
       return `
     <tr>
       <td style="padding: 6px 12px; border-bottom: 1px solid #f0f0f0;">${r.category}</td>
@@ -279,9 +290,15 @@ function renderWarehouseSection(w: WarehouseInsights): string {
   const outlierRows = w.rollingAverageOutliers
     .map((r) => {
       const color =
-        r.variancePct === null ? "#666" : r.variancePct > 0 ? "#dc3545" : "#198754";
+        r.variancePct === null
+          ? "#666"
+          : r.variancePct > 0
+            ? "#dc3545"
+            : "#198754";
       const pct =
-        r.variancePct === null ? "—" : `${r.variancePct > 0 ? "+" : ""}${r.variancePct}%`;
+        r.variancePct === null
+          ? "—"
+          : `${r.variancePct > 0 ? "+" : ""}${r.variancePct}%`;
       return `
     <tr>
       <td style="padding: 6px 12px; border-bottom: 1px solid #f0f0f0;">${r.category}</td>
