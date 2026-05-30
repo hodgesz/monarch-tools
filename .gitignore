@@ -1,0 +1,20 @@
+node_modules/
+dist/
+.env
+*.session
+*.token
+.DS_Store
+
+# Local-only docs and scratch/debug scripts (kept on disk, not published)
+CLAUDE.md
+PLAN.md
+scripts/check-receipts.ts
+scripts/debug-login.ts
+scripts/debug-recurring.ts
+scripts/debug-upcoming.ts
+scripts/explore-api.ts
+scripts/explore-warehouse.ts
+scripts/extract-token.ts
+scripts/sync-monarch.ts
+scripts/test-fetchers.ts
+scripts/test-refresh.ts

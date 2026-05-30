@@ -1,0 +1,35 @@
+{
+  "name": "monarch-tools",
+  "version": "1.0.0",
+  "description": "CLI for pulling financial data from Monarch Money",
+  "type": "commonjs",
+  "scripts": {
+    "monarch": "tsx src/cli.ts",
+    "test-auth": "tsx scripts/test-auth.ts",
+    "extract-token": "tsx scripts/extract-token.ts",
+    "alerts": "tsx scripts/run-alerts.ts",
+    "daily-digest": "tsx scripts/run-daily-digest.ts",
+    "weekly-summary": "tsx scripts/run-weekly-summary.ts",
+    "sync": "tsx scripts/sync-monarch.ts",
+    "sync:backfill": "tsx scripts/sync-monarch.ts --backfill",
+    "explore": "tsx scripts/explore-warehouse.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^12.9.0",
+    "dotenv": "^17.4.1",
+    "monarchmoney": "^1.1.3",
+    "nodemailer": "^8.0.5",
+    "playwright": "^1.59.1"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^25.6.0",
+    "@types/nodemailer": "^8.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2"
+  }
+}
