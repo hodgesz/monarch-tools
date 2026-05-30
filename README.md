@@ -31,14 +31,14 @@ cp .env.example .env   # then fill in your values
 
 Edit `.env`:
 
-| Variable | Required | Description |
-| --- | --- | --- |
-| `MONARCH_EMAIL` | yes | Monarch account email |
-| `MONARCH_PASSWORD` | yes | Monarch account password |
-| `MONARCH_MFA_SECRET` | if MFA on | TOTP secret from Monarch → Settings → Security |
-| `GMAIL_USER` | for email | Gmail address used to send reports |
+| Variable             | Required  | Description                                                     |
+| -------------------- | --------- | --------------------------------------------------------------- |
+| `MONARCH_EMAIL`      | yes       | Monarch account email                                           |
+| `MONARCH_PASSWORD`   | yes       | Monarch account password                                        |
+| `MONARCH_MFA_SECRET` | if MFA on | TOTP secret from Monarch → Settings → Security                  |
+| `GMAIL_USER`         | for email | Gmail address used to send reports                              |
 | `GMAIL_APP_PASSWORD` | for email | [Gmail App Password](https://myaccount.google.com/apppasswords) |
-| `ALERT_RECIPIENTS` | for email | Comma-separated recipient list |
+| `ALERT_RECIPIENTS`   | for email | Comma-separated recipient list                                  |
 
 Alert thresholds (large-purchase amount, budget warning %, anomaly multiplier,
 etc.) are optional overrides — see `.env.example` for the full list and defaults.

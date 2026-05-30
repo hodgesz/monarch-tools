@@ -71,7 +71,8 @@ export async function getBudgetStatus(
       plannedAmount: planned,
       actualAmount: actual,
       remainingAmount: monthData.remainingAmount ?? planned - actual,
-      percentUsed: planned > 0 ? (actual / planned) * 100 : actual > 0 ? Infinity : 0,
+      percentUsed:
+        planned > 0 ? (actual / planned) * 100 : actual > 0 ? Infinity : 0,
     });
   }
 

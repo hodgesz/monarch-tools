@@ -67,15 +67,17 @@ function expenseFilterSql(includeTransfers: boolean, includeHidden: boolean) {
 // ---- Rollups ----
 
 export interface MonthlyCategoryRow {
-  month: string;           // YYYY-MM
+  month: string; // YYYY-MM
   category_id: string;
   category_name: string;
   group_name: string | null;
-  total_expense: number;   // positive dollars
+  total_expense: number; // positive dollars
   txn_count: number;
 }
 
-export function monthlySpendByCategory(opts: QueryOpts = {}): MonthlyCategoryRow[] {
+export function monthlySpendByCategory(
+  opts: QueryOpts = {}
+): MonthlyCategoryRow[] {
   const o = resolveOpts(opts);
   const db = getDb();
   return db
@@ -211,7 +213,9 @@ export interface RollingAvgRow {
  * Average monthly spend per category over the observed window, plus
  * how this month is tracking vs that average.
  */
-export function rollingAverageByCategory(opts: QueryOpts = {}): RollingAvgRow[] {
+export function rollingAverageByCategory(
+  opts: QueryOpts = {}
+): RollingAvgRow[] {
   const rows = monthlySpendByCategory(opts);
   if (rows.length === 0) return [];
 
@@ -240,8 +244,7 @@ export function rollingAverageByCategory(opts: QueryOpts = {}): RollingAvgRow[] 
     const monthsObserved = priorAmounts.length;
     if (monthsObserved === 0) continue;
 
-    const avg =
-      priorAmounts.reduce((sum, n) => sum + n, 0) / monthsObserved;
+    const avg = priorAmounts.reduce((sum, n) => sum + n, 0) / monthsObserved;
     const currentAmount = v.monthly.get(current) ?? 0;
     result.push({
       category_id: id,
@@ -277,9 +280,7 @@ export interface BurnRateRow {
  * Project month-end spend by linearly extrapolating the actual-to-date
  * rate, using the latest budget snapshot for the given month.
  */
-export function budgetBurnRate(
-  month?: string
-): BurnRateRow[] {
+export function budgetBurnRate(month?: string): BurnRateRow[] {
   const db = getDb();
   const today = new Date();
   const monthStart =
@@ -316,16 +317,13 @@ export function budgetBurnRate(
   return snapshots
     .map((s) => {
       const projected =
-        pctElapsed > 0
-          ? (s.actual_amount / pctElapsed)
-          : s.actual_amount;
+        pctElapsed > 0 ? s.actual_amount / pctElapsed : s.actual_amount;
       return {
         category_id: s.category_id,
         category_name: s.category_name,
         planned: Math.round(s.planned_amount * 100) / 100,
         actual_so_far: Math.round(s.actual_amount * 100) / 100,
-        pct_used:
-          Math.round((s.actual_amount / s.planned_amount) * 1000) / 10,
+        pct_used: Math.round((s.actual_amount / s.planned_amount) * 1000) / 10,
         pct_month_elapsed: Math.round(pctElapsed * 1000) / 10,
         projected_month_end: Math.round(projected * 100) / 100,
         projected_overage:
@@ -376,11 +374,11 @@ export function topMerchants(
 
 export interface IncomeBreakdownRow {
   month: string;
-  gross_income: number;     // raw positive-amount sum, pre-filter
-  noise_filtered: number;   // noise amount we removed
-  true_income: number;      // gross - noise
-  paychecks: number;        // Paychecks category only
-  other_income: number;     // clean non-paycheck income
+  gross_income: number; // raw positive-amount sum, pre-filter
+  noise_filtered: number; // noise amount we removed
+  true_income: number; // gross - noise
+  paychecks: number; // Paychecks category only
+  other_income: number; // clean non-paycheck income
   paycheck_count: number;
 }
 

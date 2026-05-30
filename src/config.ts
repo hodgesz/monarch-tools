@@ -25,8 +25,7 @@ export function loadConfig(): Config {
     password,
     mfaSecret: process.env.MONARCH_MFA_SECRET || undefined,
     cacheEncryptionKey: process.env.MONARCH_CACHE_ENCRYPTION_KEY || undefined,
-    logLevel:
-      (process.env.MONARCH_LOG_LEVEL as Config["logLevel"]) || "warn",
+    logLevel: (process.env.MONARCH_LOG_LEVEL as Config["logLevel"]) || "warn",
   };
 }
 
@@ -64,10 +63,8 @@ export function loadAlertConfig(): AlertConfig {
         Number(process.env.ALERT_BUDGET_WARNING_PERCENT) || 80,
       budgetExceededPercent:
         Number(process.env.ALERT_BUDGET_EXCEEDED_PERCENT) || 100,
-      anomalyMultiplier:
-        Number(process.env.ALERT_ANOMALY_MULTIPLIER) || 1.5,
-      upcomingBillsDays:
-        Number(process.env.ALERT_UPCOMING_BILLS_DAYS) || 7,
+      anomalyMultiplier: Number(process.env.ALERT_ANOMALY_MULTIPLIER) || 1.5,
+      upcomingBillsDays: Number(process.env.ALERT_UPCOMING_BILLS_DAYS) || 7,
     },
   };
 }
