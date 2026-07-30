@@ -14,8 +14,11 @@ runs unattended under macOS `launchd` and maintains a local SQLite warehouse at 
 
 - Install: `npm install` (CI uses `npm ci`), then `cp .env.example .env`.
 - Lint: `npm run lint` (`eslint .`). Format check: `npm run format:check` (`prettier --check .`).
-- Typecheck: `npm run typecheck` (`tsc --noEmit`). Test: `npm test` (`vitest run
-  --passWithNoTests`).
+- **That check includes markdown**, so this file and the README are CI-gated like the code. Prettier
+  rewrites `*em*` to `_em_` and will dedent a list item whose wrapped line starts a code span, so keep
+  an inline `` `code` `` on one line. Run `npx prettier --write` on any doc you edit.
+- Typecheck: `npm run typecheck` (`tsc --noEmit`).
+- Test: `npm test` (`vitest run --passWithNoTests`).
 - Entry points: `npm run alerts`, `npm run daily-digest`, `npm run weekly-summary`,
   `npm run test-auth` — or `npx tsx scripts/<name>.ts` directly.
 - CI runs, in order: `npm ci` → lint → format:check → typecheck → test. Match that before claiming a
